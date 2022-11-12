@@ -1,7 +1,13 @@
 require('dotenv').config();
 
+let mongoose = require('mongoose');
+
 
 let Person;
+
+//new_user_mongP
+//qLIoh3DUe9ek5ct6
+mongoose.connect('mongodb+srv://new_user_mongP:qLIoh3DUe9ek5ct6@cluster0.dveiqld.mongodb.net/fcc-mongodb-and-mongoose?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
