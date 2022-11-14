@@ -5,8 +5,6 @@ let Schema = mongoose.Schema;
 
 var Person;
 
-//new_user_mongP
-//qLIoh3DUe9ek5ct6
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 /** Create a 'Person' Model */
@@ -40,16 +38,31 @@ const createManyPeople = (arrayOfPeople, done) => {
   })
 };
 
+/** Use `Model.find()` */
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName}, function(err, people) {
+    if(err) return console.log(err);  
+    console.log(people);
+    done(null, people);
+  });
 };
 
+/** Use `Model.findOne()` for get one documentfor get array of document */
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({favoriteFoods: food}, function(err, bouf) {
+    if(err) return console.log(err);  
+    console.log(bouf);
+    done(null, bouf);
+  });
 };
 
+/** Use `Model.findById()` for get document by id */
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById({id: personId}, function(err, onePseron) {
+    if(err) return console.log(err);  
+    console.log(onePseron);
+    done(null, onePseron);
+  });
 };
 
 const findEditThenSave = (personId, done) => {
