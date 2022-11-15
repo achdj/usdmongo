@@ -58,23 +58,36 @@ const findOneByFood = (food, done) => {
 
 /** Use `Model.findById()` for get document by id */
 const findPersonById = (personId, done) => {
-  Person.findById({id: personId}, function(err, onePseron) {
+  Person.findById({_id: personId}, function(err, onePerson) {
     if(err) return console.log(err);  
-    console.log(onePseron);
-    done(null, onePseron);
+    console.log(onePerson);
+    done(null, onePerson);
   });
 };
 
 const findEditThenSave = (personId, done) => {
-  const foodToAdd = "hamburger";
-
-  done(null /*, data*/);
+  // .findById() method to find a person by _id with the parameter personId as search key.
+  Person.findById({_id: personId}, function(err, onePerson) {
+    if(err) return console.log(err);
+    const foodToAdd = "hamburger";
+    // Array.push() method to add "hamburger" to the list of the person's favoriteFoods
+    onePerson.favoriteFoods.push(foodToAdd);
+    // and inside the find callback - save() the updated Person.
+    onePerson.save(function(err, data) {
+      if(err) return console.log(err);
+      done(null, data);
+    });
+  });
 };
 
+/* find one document by one attibut and update this data and retur new document update with new: true(by default function return old document*/
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
+  Pseron.findOneAndUpdata({name: personName}, {age: ageToSet}, {new: true}, function(err, data) {
+    if(err) return console.log(err);
+    done(null, data);
+  })
 
-  done(null /*, data*/);
 };
 
 const removeById = (personId, done) => {
