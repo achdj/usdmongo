@@ -80,10 +80,10 @@ const findEditThenSave = (personId, done) => {
   });
 };
 
-/* find one document by one attibut and update this data and retur new document update with new: true(by default function return old document*/
+/* find one document by one attribut and update this data and retur new document update with new: true(by default function return old document*/
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
-  Pseron.findOneAndUpdata({name: personName}, {age: ageToSet}, {new: true}, function(err, data) {
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true}, function(err, data) {
     if(err) return console.log(err);
     done(null, data);
   })
